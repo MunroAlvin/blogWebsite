@@ -6,10 +6,34 @@
     padding: 0;
     font-family: 'Montserrat', sans-serif;
     color: black;
+    
+    
+}
+/* padding-bottom value depends on the px of footer */
+body{
+    position: relative;
+    padding-bottom: 68px;
+    min-height: 100vh;
 }
 
 #footerText{
     padding: 3% 5%;
+    
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+
+.composeContainer{
+    padding-left: 30px;
+}
+
+.composeTitle{
+    padding-top: 30px;
     
 }
 
