@@ -9,23 +9,19 @@
     
     
 }
-/* padding-bottom value depends on the px of footer */
-body{
-    position: relative;
-    padding-bottom: 68px;
-    min-height: 100vh;
-}
-
-#footerText{
-    padding: 3% 5%;
-    
-}
 
 footer{
     position: absolute;
     bottom: 0;
-    width: 100%;
+    left: 0;
+    right: 0;
+    background: #111;
+    height: auto;
+    width: 100vw;
+    padding-top: 40px;
+    color: #fff;
 }
+
 
 
 .composeContainer{
@@ -36,4 +32,5 @@ footer{
     padding-top: 30px;
     
 }
+
 
