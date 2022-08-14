@@ -36,6 +36,18 @@ app.get("/", function (req, res) {
 
 });
 
+app.get("/home/:postName", function(req,res){
+
+  let searchedPostName = req.params.postName; 
+  
+  // if(posts.includes(searchedPostName)){
+  //   console.log("Match found");
+  // }else{
+  //   console.log("Not match found !!");
+  // }
+  
+});
+
 app.get("/about", function (req, res) {
   res.render('about', {
     aboutContent: aboutContent
@@ -66,7 +78,6 @@ app.post("/compose", function(req, res){
   posts.push(post);
 
   res.redirect("/");
-
   
 });
 
