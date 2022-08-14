@@ -2,34 +2,114 @@
 
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    margin: 0rem;
+    padding: 0rem;
     font-family: 'Montserrat', sans-serif;
-    color: black;
-    
     
 }
 
+main{
+    width: 90vw;
+    margin: 0 auto;
+    padding: 1.875rem 1.25rem;
+    min-height: calc(100vh - 3.625rem - 18rem);
+}
+
+article {
+    background-color: #FCF8E8;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-radius: 0.313rem;
+  }
+
+article:last-child {
+    margin-bottom: 0%;
+  }
+
 footer{
-    position: absolute;
+    background-color: #ECCCB2;
+    text-align: center;
+    padding: 1.25rem;
+    position: relative;
     bottom: 0;
-    left: 0;
-    right: 0;
-    background: #111;
-    height: auto;
-    width: 100vw;
-    padding-top: 40px;
-    color: #fff;
+    width: 100%;
+}
+
+.footer-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+
+}
+
+.footer-content h3{
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-transform: capitalize;
+    line-height: 3rem;
+}
+
+.footer-content p{
+    max-width: 500px;
+    margin: 0.625rem auto;
+    font-size: 0.875rem;
+}
+
+.socials{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 3rem 0;
+}
+
+.socials li{
+    margin: 0 0.625rem;
+}
+
+.socials a{
+    text-decoration: none;
+    color: burlywood;
+}
+
+.socials a i{
+    font-size: 1.1rem;
+    transition: color .4s ease;
+}
+
+.socials a:hover i{
+    color: crimson;
+}
+
+.footer-bottom{
+    background-color: #ECB390;
+    padding: 0.125 0;
+    text-align: center;
+}
+
+.footer-bottom p{
+    font-size: 0.875;
+    word-spacing: 0.125rem;
+    text-transform: capitalize;
+    bottom: 0%;
+}
+
+.footer-bottom span{
+    text-transform: uppercase;
+    opacity: .8;
+    font-weight: 200;
 }
 
 
 
 .composeContainer{
-    padding-left: 30px;
+    padding-left: 1.875rem;
 }
 
 .composeTitle{
-    padding-top: 30px;
+    padding-top: 1.875rem;
     
 }
 
