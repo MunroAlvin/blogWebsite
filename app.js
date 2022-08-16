@@ -17,11 +17,17 @@ app.use(bodyParser.urlencoded({
 
 //init ejs
 const ejs = require("ejs");
-const { text } = require("body-parser");
+const {
+  text
+} = require("body-parser");
 app.set("view engine", "ejs");
 
 //init static folder
 app.use(express.static("public"));
+
+// Load the full build of lodash.
+const _ = require('lodash');
+
 
 // variables
 let posts = [];
@@ -36,23 +42,25 @@ app.get("/", function (req, res) {
 
 });
 
-app.get("/home/:postName", function(req,res){
- 
-  
+app.get("/home/:postName", function (req, res) {
+
+
   function isSearchedPostName(obj) {
+    
+    obj.title  = _.lowerCase(obj.title);
+
+    req.params.postName = _.lowerCase(req.params.postName);
+
     return obj.title === req.params.postName;
   }
-  
-  let temp = posts.find(isSearchedPostName);
-  
-  if(temp == undefined){
+
+  if( posts.find(isSearchedPostName) == undefined){
       console.log("no");
   }else{
       console.log("ok");
   }
 
 
-  
 });
 
 app.get("/about", function (req, res) {
@@ -69,11 +77,11 @@ app.get("/contact", function (req, res) {
 
 app.get("/compose", function (req, res) {
   res.render('compose', {
-    
+
   });
 });
 
-app.post("/compose", function(req, res){
+app.post("/compose", function (req, res) {
 
   const post = {
 
@@ -85,7 +93,7 @@ app.post("/compose", function(req, res){
   posts.push(post);
 
   res.redirect("/");
-  
+
 });
 
 
