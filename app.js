@@ -37,8 +37,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/home/:postName", function(req,res){
-
-  // let searchedPostName = req.params.postName; 
+ 
   
   function isSearchedPostName(obj) {
     return obj.title === req.params.postName;
