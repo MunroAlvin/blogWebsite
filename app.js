@@ -40,11 +40,26 @@ app.get("/home/:postName", function(req,res){
 
   let searchedPostName = req.params.postName; 
   
-  // if(posts.includes(searchedPostName)){
-  //   console.log("Match found");
-  // }else{
-  //   console.log("Not match found !!");
-  // }
+  if(posts.length == 0){
+    console.log("No match found !!");
+  }else{
+    for (let index = 0; index < posts.length; index++) {
+
+      if(posts[index].title.includes(searchedPostName)){
+        console.log("Match found !!");
+        index = posts.length;
+      }
+      else if(!(posts[index].title.includes(searchedPostName)) && (index == (posts.length - 1)) ){
+        console.log("No match found !!");
+        index = posts.length
+      }else{
+        // TO DO
+      }
+       
+    }
+  }
+
+
   
 });
 
