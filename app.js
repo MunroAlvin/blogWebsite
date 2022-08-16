@@ -23,7 +23,7 @@ const {
 app.set("view engine", "ejs");
 
 //init static folder
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 
 // Load the full build of lodash.
 const _ = require('lodash');
@@ -31,7 +31,6 @@ const _ = require('lodash');
 
 // variables
 let posts = [];
-
 
 
 app.get("/", function (req, res) {
@@ -46,18 +45,27 @@ app.get("/home/:postName", function (req, res) {
 
 
   function isSearchedPostName(obj) {
-    
-    obj.title  = _.lowerCase(obj.title);
+
+    obj.title = _.lowerCase(obj.title);
 
     req.params.postName = _.lowerCase(req.params.postName);
-
+   
     return obj.title === req.params.postName;
   }
 
-  if( posts.find(isSearchedPostName) == undefined){
-      console.log("no");
-  }else{
-      console.log("ok");
+  if (posts.find(isSearchedPostName) == undefined) {
+    console.log("no");
+    res.render('post', {
+      postTitle: "Undefined page",
+      postContent: "Munro Alvin"
+    });
+  } else {
+    console.log("ok");
+    res.render('post', {
+      postTitle:   posts.find(isSearchedPostName).title,
+      postContent: posts.find(isSearchedPostName).content
+    });
+
   }
 
 

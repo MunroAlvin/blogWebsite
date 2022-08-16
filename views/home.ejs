@@ -8,8 +8,10 @@
 
         <% posts.forEach(function (post){ %>
         <p class="h1 border-bottom border-secondary border-2 "><%= post.title %> </p>
-        <p class="lead"><%= post.content %> </p>
+        <p class="lead d-inline-flex"><%= post.content.substring(0,110) + "..." %> </p>
+        <a class="btn btn-outline-success " href=<%="/home/"  + post.title %> >Read more</a>
         <%   }) %>
+
     </article>
 </main>
 
