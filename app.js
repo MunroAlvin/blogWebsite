@@ -38,25 +38,18 @@ app.get("/", function (req, res) {
 
 app.get("/home/:postName", function(req,res){
 
-  let searchedPostName = req.params.postName; 
+  // let searchedPostName = req.params.postName; 
   
-  if(posts.length == 0){
-    console.log("No match found !!");
+  function isSearchedPostName(obj) {
+    return obj.title === req.params.postName;
+  }
+  
+  let temp = posts.find(isSearchedPostName);
+  
+  if(temp == undefined){
+      console.log("no");
   }else{
-    for (let index = 0; index < posts.length; index++) {
-
-      if(posts[index].title.includes(searchedPostName)){
-        console.log("Match found !!");
-        index = posts.length;
-      }
-      else if(!(posts[index].title.includes(searchedPostName)) && (index == (posts.length - 1)) ){
-        console.log("No match found !!");
-        index = posts.length
-      }else{
-        // TO DO
-      }
-       
-    }
+      console.log("ok");
   }
 
 
