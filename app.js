@@ -28,6 +28,23 @@ app.use(express.static(__dirname + "/public"));
 // Load the full build of lodash.
 const _ = require('lodash');
 
+// init mongoose
+const mongoose = require('mongoose');
+
+// // open a connection to the "blogDB" database on our locally
+mongoose.connect('mongodb://localhost:27017/test', function (error) {
+  if (!error) {
+    console.log("Database created succesfully Database name is: blogDB");
+  } else {
+    console.log(error);
+  }
+});
+
+// const blogSchema = new mongoose.Schema({
+//   title: String,
+//   content: String
+// });
+
 
 // variables
 let posts = [];
