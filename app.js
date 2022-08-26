@@ -32,7 +32,7 @@ const _ = require('lodash');
 const mongoose = require('mongoose');
 
 // // open a connection to the "blogDB" database on our locally
-mongoose.connect('mongodb://localhost:27017/test', function (error) {
+mongoose.connect('mongodb://localhost:27017/blogDB', function (error) {
   if (!error) {
     console.log("Database created succesfully Database name is: blogDB");
   } else {
@@ -40,50 +40,54 @@ mongoose.connect('mongodb://localhost:27017/test', function (error) {
   }
 });
 
-// const blogSchema = new mongoose.Schema({
-//   title: String,
-//   content: String
-// });
+// create a schema
+const blogSchema = new mongoose.Schema({
+  title: String,
+  content: String
+});
 
+//create a model and it shows plural type in "show collection" command
+const blogModel = mongoose.model("blogModel", blogSchema);
 
-// variables
-let posts = [];
 
 
 app.get("/", function (req, res) {
-  res.render('home', {
-    homeStartingContent: homeStartingContent,
-    posts: posts
+
+  blogModel.find({}, function (error, blogList) {
+
+    res.render('home', {
+      homeStartingContent: homeStartingContent,
+      posts: blogList
+    });
+
   });
+
 
 });
 
-app.get("/home/:postName", function (req, res) {
+app.get("/home/:postID", function (req, res) {
+
+  postID = req.params.postID;
+  blogModel.findById(req.params.postID, function (error, blog) {
+    if (blog._id == postID) {
+      res.render('post', {
+        postTitle: blog.title,
+        postContent : blog.content
+      });
+    } else {
+      res.render('post', {
+        postTitle: "Undefined page",
+        postContent: "Munro Alvin"
+      });
+    }
+
+  });
 
 
-  function isSearchedPostName(obj) {
 
-    obj.title = _.lowerCase(obj.title);
 
-    req.params.postName = _.lowerCase(req.params.postName);
-   
-    return obj.title === req.params.postName;
-  }
 
-  if (posts.find(isSearchedPostName) == undefined) {
-    console.log("no");
-    res.render('post', {
-      postTitle: "Undefined page",
-      postContent: "Munro Alvin"
-    });
-  } else {
-    console.log("ok");
-    res.render('post', {
-      postTitle:   posts.find(isSearchedPostName).title,
-      postContent: posts.find(isSearchedPostName).content
-    });
 
-  }
 
 
 });
@@ -108,16 +112,22 @@ app.get("/compose", function (req, res) {
 
 app.post("/compose", function (req, res) {
 
-  const post = {
+  const blogDocument = new blogModel({
 
     title: req.body.postTitle,
     content: req.body.postBody
 
-  };
+  });
 
-  posts.push(post);
+  blogDocument.save(function (error) {
+    if (!error) {
+      res.redirect("/");
+      console.log("Blog saved !!");
+    } else {
+      console.log(error + " Blog haven't saved");
+    }
+  });
 
-  res.redirect("/");
 
 });
 
